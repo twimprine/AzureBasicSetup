@@ -1,20 +1,23 @@
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+This is the standard template for Azure infrastructure to be created. This will create the standard resources with tags and appropriate security. 
 
 # Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
+1. Ensure you have Git installed - https://git-scm.com/downloads/win
 1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+    Since this is a template clone this repository to your local system. This is your reference code - Changes should not be made here. 
+1.	Create new directory to house client/project files ("../ClientName"), copy the reference files into the new directory and initialize the new repository. 
+    ```
+    cd ..
+    mkdir ClientName
+    robocopy `.\Azure Standard Framework\` ClientName /E /Z /ETA 
+    cd ClientName
+    git init
+    ```  
+    `This really should be a fork but I'm not sure how to do this in TFS yet`
+1.	Make client specific changes to the `terraform.tfvars.json` file as needed. 
 
 # Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+
 
 # Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
-
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+Since this is a template - if it requires changes please open a ticket with the required changes. They will need to be applied to all child repositories as appropriate, i.e. Security fixes, etc. 
