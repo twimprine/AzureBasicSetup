@@ -21,3 +21,6 @@ This is the standard template for Azure infrastructure to be created. This will 
 
 # Contribute
 Since this is a template - if it requires changes please open a ticket with the required changes. They will need to be applied to all child repositories as appropriate, i.e. Security fixes, etc. 
+
+# ToDo
+- Basic Fortigate integration https://github.com/fortinet/fortigate-terraform-deploy/tree/main/azure/7.0/single
