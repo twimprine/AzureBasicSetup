@@ -14,9 +14,17 @@ This is the standard template for Azure infrastructure to be created. This will 
     git init
     ```  
     `This really should be a fork but I'm not sure how to do this in TFS yet`
-1.	Make client specific changes to the `terraform.tfvars.json` file as needed. 
+1.	Copy the `terraform.tfvars.json.sample` file and remove the `sample` extension. Make client specific changes to the `terraform.tfvars.json` file as needed. 
 
 # Build and Test
+1. Install the Azure CLI - https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli
+1. Login with Azure ```az login```
+1. If it's not already created - create the 'Service Principal' for Terraform 
+    ```
+    az ad sp create-for-rbac --name "terraform-sp" --role Contributor --scopes /subscriptions/<your_subscription_id>
+    ```
+1. Retrieve your subscription-id ```az account show --query id --output tsv```
+
 
 
 # Contribute
@@ -24,3 +32,4 @@ Since this is a template - if it requires changes please open a ticket with the 
 
 # ToDo
 - Basic Fortigate integration https://github.com/fortinet/fortigate-terraform-deploy/tree/main/azure/7.0/single
+
