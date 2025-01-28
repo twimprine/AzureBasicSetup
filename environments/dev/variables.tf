@@ -42,6 +42,10 @@ variable "virtual_network" {
       name          = string
       address_space = string
     })
+    subnet = object({
+      name        = string
+      subnet_bits = string
+    })
   })
   description = "Configuration for virtual networks in dev and prod environments."
 }
@@ -56,9 +60,9 @@ variable "virtual_machines" {
       size      = string
       count     = number
       os_disk = object({
-        size                  = number
-        caching               = string
-        storage_account_type  = string
+        size                 = number
+        caching              = string
+        storage_account_type = string
       })
     })
     fileserver = object({
@@ -66,14 +70,14 @@ variable "virtual_machines" {
       size      = string
       count     = number
       os_disk = object({
-        size                  = number
-        caching               = string
-        storage_account_type  = string
+        size                 = number
+        caching              = string
+        storage_account_type = string
       })
       data_disk = object({
-        size                  = number
-        caching               = string
-        storage_account_type  = string
+        size                 = number
+        caching              = string
+        storage_account_type = string
       })
     })
   })
@@ -82,6 +86,6 @@ variable "virtual_machines" {
 
 # Tags
 variable "tags" {
-  type = map(string)
+  type        = map(string)
   description = "Tags to apply to all resources."
 }
