@@ -19,11 +19,12 @@ This is the standard template for Azure infrastructure to be created. This will 
 # Build and Test
 1. Install the Azure CLI - https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli
 1. Login with Azure ```az login```
+1. Retrieve your subscription-id ```az account show --query id --output tsv```
 1. If it's not already created - create the 'Service Principal' for Terraform 
     ```
     az ad sp create-for-rbac --name "terraform-sp" --role Contributor --scopes /subscriptions/<your_subscription_id>
     ```
-1. Retrieve your subscription-id ```az account show --query id --output tsv```
+
 
 
 

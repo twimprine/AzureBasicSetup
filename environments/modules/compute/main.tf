@@ -1,13 +1,31 @@
+resource "azurerm_network_interface" "vm-nic" {
+  count               = var.vm_count
+  name                = format(upper("%s-%02d-nic", var.base_name, count.index + 1))
+  location            = var.location
+  resource_group_name = var.resource_group
+
+  ip_configuration {
+    name                          = "ipconfig1"
+    subnet_id                     = var.subnet_id
+    private_ip_address_allocation = "Dynamic"
+  }
+
+  tags = var.tags
+}
+
+
 resource "azurerm_windows_virtual_machine" "win-vm" {
-  name                = "example-machine"
-  resource_group_name = azurerm_resource_group.example.name
-  location            = azurerm_resource_group.example.location
-  size                = "Standard_F2"
-  admin_username      = "adminuser"
-  admin_password      = "P@$$w0rd1234!"
+  name                = format(upper("%s-%02d", var.base_name, count.index + 1))
+  resource_group_name = var.resource_group
+  location            = var.location
+  size                = var.vm_size
+  admin_username      = var.admin_username
+  admin_password      = var.admin_password
   network_interface_ids = [
     azurerm_network_interface.example.id,
   ]
+
+  tags = var.tags
 
   os_disk {
     caching              = "ReadWrite"
