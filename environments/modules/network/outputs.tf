@@ -9,3 +9,7 @@ output virtual_network_name {
 output virtual_network_address_space {
   value = azurerm_virtual_network.vnet.address_space
 }
+
+output subnet_id {
+  value = azurerm_subnet.subnet.id
+}

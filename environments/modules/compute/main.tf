@@ -1,6 +1,6 @@
 resource "azurerm_network_interface" "vm-nic" {
   count               = var.vm_count
-  name                = format(upper("%s-%02d-nic", var.base_name, count.index + 1))
+  name                = format(upper("%s-nic-%02d", var.base_name, count.index + 1))
   location            = var.location
   resource_group_name = var.resource_group
 
