@@ -36,11 +36,11 @@ variable "virtual_network" {
   type = object({
     dev = object({
       name          = string
-      address_space = string
+      address_space = list(string)
     })
     prod = object({
       name          = string
-      address_space = string
+      address_space = list(string)
     })
     subnet = object({
       name        = string

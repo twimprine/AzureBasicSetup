@@ -37,3 +37,13 @@ variable "tags" {
   description = "A map of tags to apply to the virtual machines"
   type        = map(string)
 }
+
+variable "subnet_id" {
+  description = "The ID of the subnet to which the virtual machines should be connected"
+  type        = string
+}
+
+variable "subnet_name" {
+  description = "The name of the subnet to which the virtual machines should be connected"
+  type        = string
+}
