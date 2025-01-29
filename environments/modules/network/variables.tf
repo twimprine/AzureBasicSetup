@@ -17,12 +17,22 @@ variable "resource_group" {
   description = "The name of the resource group in which the virtual network should be created"
   type        = string
 }
-variable "subnet_name" {
+variable "private_subnet_name" {
   description = "The name of the subnet"
   type        = string
 }
 
-variable "subnet_bits" {
+variable "private_subnet_bits" {
+  description = "The address prefix that is used by the subnet"
+  type        = number
+}
+
+variable "external_subnet_name" {
+  description = "The name of the subnet"
+  type        = string
+}
+
+variable "external_subnet_bits" {
   description = "The address prefix that is used by the subnet"
   type        = number
 }

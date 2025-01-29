@@ -42,10 +42,15 @@ variable "virtual_network" {
       name          = string
       address_space = list(string)
     })
-    subnet = object({
+    private_subnet = object({
       name        = string
       subnet_bits = string
     })
+    external_subnet = object({
+      name        = string
+      subnet_bits = string
+    })
+
   })
   description = "Configuration for virtual networks in dev and prod environments."
 }
