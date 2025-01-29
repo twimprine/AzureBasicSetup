@@ -47,3 +47,8 @@ variable "subnet_name" {
   description = "The name of the subnet to which the virtual machines should be connected"
   type        = string
 }
+
+variable "os_version" {
+  description = "The version of the operating system to use for the virtual machines"
+  type        = string
+}

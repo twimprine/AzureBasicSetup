@@ -28,6 +28,7 @@ module "domain_controller" {
   admin_password = var.virtual_machines.admin_password
   subnet_id      = module.network.subnet_id
   subnet_name    = var.virtual_network.subnet.name
+  os_version     = var.virtual_machines.os_version
   tags           = var.tags
 }
 
@@ -42,5 +43,6 @@ module "fileserver" {
   admin_password = var.virtual_machines.admin_password
   subnet_id      = module.network.subnet_id
   subnet_name    = var.virtual_network.subnet.name
+  os_version     = var.virtual_machines.os_version
   tags           = var.tags
 }

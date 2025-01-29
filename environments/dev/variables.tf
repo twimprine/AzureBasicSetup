@@ -55,6 +55,7 @@ variable "virtual_machines" {
   type = object({
     admin_username = string
     admin_password = string
+    os_version = string
     dc = object({
       base_name = string
       size      = string

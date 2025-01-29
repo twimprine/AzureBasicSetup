@@ -1,3 +1,12 @@
+data "azurerm_platform_image" "windows_server" {
+  location  = var.location
+  publisher = "MicrosoftWindowsServer"
+  offer     = "WindowsServer"
+  sku       = format("%s-datacenter-smalldisk-g2", var.os_version)
+  # sku = "2022-datacenter"
+  # version = "latest"
+}
+
 resource "azurerm_network_interface" "vm-nic" {
   count               = var.vm_count
   name                = upper(format("%s-nic-%02d", var.base_name, count.index + 1))
@@ -25,8 +34,9 @@ resource "azurerm_windows_virtual_machine" "win-vm" {
   network_interface_ids = [
     azurerm_network_interface.vm-nic[count.index].id,
   ]
-
-  tags = var.tags
+  enable_automatic_updates = true
+  provision_vm_agent       = true
+  tags                     = var.tags
 
   os_disk {
     caching              = "ReadWrite"
@@ -34,9 +44,9 @@ resource "azurerm_windows_virtual_machine" "win-vm" {
   }
 
   source_image_reference {
-    publisher = "MicrosoftWindowsServer"
-    offer     = "WindowsServer"
-    sku       = "2016-Datacenter"
-    version   = "latest"
+    publisher = data.azurerm_platform_image.windows_server.publisher
+    offer     = data.azurerm_platform_image.windows_server.offer
+    sku       = data.azurerm_platform_image.windows_server.sku
+    version   = data.azurerm_platform_image.windows_server.version
   }
 }
