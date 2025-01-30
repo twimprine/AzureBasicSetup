@@ -37,6 +37,8 @@ resource "azurerm_windows_virtual_machine" "win-vm" {
 
   enable_automatic_updates = true
   provision_vm_agent       = true
+
+  user_data = base64encode(var.user_data_script)
   tags                     = var.tags
 
   os_disk {

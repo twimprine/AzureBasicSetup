@@ -57,3 +57,8 @@ variable "os_disk_size" {
   description = "The size of the OS disk for the virtual machines"
   type        = number
 }
+
+variable "user_data_script" {
+  description = "The user data script to run on the virtual machines"
+  type        = string
+}

@@ -28,35 +28,37 @@ module "network" {
 }
 
 module "domain_controller" {
-  source         = "../modules/compute"
-  resource_group = module.resource_group.name
-  location       = var.resource_group.location
-  base_name      = var.virtual_machines.dc.base_name
-  vm_count       = var.virtual_machines.dc.count
-  vm_size        = var.virtual_machines.dc.size
-  admin_username = var.virtual_machines.admin_username
-  admin_password = var.virtual_machines.admin_password
-  subnet_id      = module.network.private_subnet_id
-  subnet_name    = module.network.private_subnet_name
-  os_version     = var.virtual_machines.os_version
-  os_disk_size   = var.virtual_machines.dc.os_disk.size
-  tags           = var.tags
+  source           = "../modules/compute"
+  resource_group   = module.resource_group.name
+  location         = var.resource_group.location
+  base_name        = var.virtual_machines.dc.base_name
+  vm_count         = var.virtual_machines.dc.count
+  vm_size          = var.virtual_machines.dc.size
+  admin_username   = var.virtual_machines.admin_username
+  admin_password   = var.virtual_machines.admin_password
+  subnet_id        = module.network.private_subnet_id
+  subnet_name      = module.network.private_subnet_name
+  os_version       = var.virtual_machines.os_version
+  os_disk_size     = var.virtual_machines.dc.os_disk.size
+  tags             = var.tags
+  user_data_script = var.virtual_machines.dc.user_data_script
 }
 
 module "fileserver" {
-  source         = "../modules/compute"
-  resource_group = module.resource_group.name
-  location       = var.resource_group.location
-  base_name      = var.virtual_machines.fileserver.base_name
-  vm_count       = var.virtual_machines.fileserver.count
-  vm_size        = var.virtual_machines.fileserver.size
-  admin_username = var.virtual_machines.admin_username
-  admin_password = var.virtual_machines.admin_password
-  subnet_id      = module.network.private_subnet_id
-  subnet_name    = module.network.private_subnet_name
-  os_version     = var.virtual_machines.os_version
-  os_disk_size   = var.virtual_machines.fileserver.os_disk.size
-  tags           = var.tags
+  source           = "../modules/compute"
+  resource_group   = module.resource_group.name
+  location         = var.resource_group.location
+  base_name        = var.virtual_machines.fileserver.base_name
+  vm_count         = var.virtual_machines.fileserver.count
+  vm_size          = var.virtual_machines.fileserver.size
+  admin_username   = var.virtual_machines.admin_username
+  admin_password   = var.virtual_machines.admin_password
+  subnet_id        = module.network.private_subnet_id
+  subnet_name      = module.network.private_subnet_name
+  os_version       = var.virtual_machines.os_version
+  os_disk_size     = var.virtual_machines.fileserver.os_disk.size
+  tags             = var.tags
+  user_data_script = var.virtual_machines.fileserver.user_data_script
 }
 
 module "firewall" {
