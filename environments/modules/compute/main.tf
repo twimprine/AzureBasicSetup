@@ -34,6 +34,7 @@ resource "azurerm_windows_virtual_machine" "win-vm" {
   network_interface_ids = [
     azurerm_network_interface.vm-nic[count.index].id,
   ]
+
   enable_automatic_updates = true
   provision_vm_agent       = true
   tags                     = var.tags
@@ -41,6 +42,8 @@ resource "azurerm_windows_virtual_machine" "win-vm" {
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
+    disk_size_gb         = var.os_disk_size
+
   }
 
   source_image_reference {

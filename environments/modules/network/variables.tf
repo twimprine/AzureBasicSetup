@@ -41,3 +41,8 @@ variable tags {
   description = "Tags to apply to the resource group"
   type        = map(string)
 }
+
+variable "fw_private_ip_address" {
+  description = "The private IP address of the firewall"
+  type        = string
+}

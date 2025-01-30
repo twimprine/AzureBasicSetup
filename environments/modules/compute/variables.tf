@@ -52,3 +52,8 @@ variable "os_version" {
   description = "The version of the operating system to use for the virtual machines"
   type        = string
 }
+
+variable "os_disk_size" {
+  description = "The size of the OS disk for the virtual machines"
+  type        = number
+}

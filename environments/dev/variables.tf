@@ -95,3 +95,27 @@ variable "tags" {
   type        = map(string)
   description = "Tags to apply to all resources."
 }
+
+variable "firewall" {
+  description = "Configuration for the firewall virtual machine."
+
+  type = object({
+    vm_size        = string
+    admin_username = string
+    admin_password = string
+    license        = string
+
+    image = object({
+      offer     = string
+      publisher = string
+      sku       = string
+      version   = string
+      urn       = string
+    })
+    os_disk = object({
+      caching              = string
+      storage_account_type = string
+      size                 = number
+    })
+  })
+}
