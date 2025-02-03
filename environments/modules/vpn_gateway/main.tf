@@ -31,6 +31,6 @@ resource "azurerm_virtual_network_gateway" "vpn_gw" {
 resource "azurerm_subnet" "gateway_subnet" {
   name                 = "GatewaySubnet"
   resource_group_name  = var.resource_group
-  virtual_network_name = azurerm_virtual_network.main.name
+  virtual_network_name = var.vnet_name
   address_prefixes     = [cidrsubnet(var.address_space[0], 8, 3)]
 }

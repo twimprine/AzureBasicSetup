@@ -70,6 +70,7 @@ variable "virtual_machines" {
         caching              = string
         storage_account_type = string
       })
+      user_data_script = string
     })
     fileserver = object({
       base_name = string
@@ -85,6 +86,7 @@ variable "virtual_machines" {
         caching              = string
         storage_account_type = string
       })
+      user_data_script = string
     })
   })
   description = "Configuration for virtual machines, including domain controllers and file servers."

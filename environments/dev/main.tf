@@ -14,17 +14,15 @@ module "resource_group" {
 }
 
 module "network" {
-  source                = "../modules/network"
-  resource_group        = module.resource_group.name
-  location              = var.resource_group.location
-  vnet_name             = local.vnet_name
-  address_space         = local.address_space
-  private_subnet_name   = var.virtual_network.private_subnet.name
-  private_subnet_bits   = var.virtual_network.private_subnet.subnet_bits
-  external_subnet_name  = var.virtual_network.external_subnet.name
-  external_subnet_bits  = var.virtual_network.external_subnet.subnet_bits
-  tags                  = var.tags
-  fw_private_ip_address = module.firewall.fw_private_ip_address
+  source              = "../modules/network"
+  resource_group      = module.resource_group.name
+  location            = var.resource_group.location
+  vnet_name           = local.vnet_name
+  address_space       = local.address_space
+  private_subnet_name = var.virtual_network.private_subnet.name
+  private_subnet_bits = var.virtual_network.private_subnet.subnet_bits
+  tags                = var.tags
+  # fw_private_ip_address = module.firewall.fw_private_ip_address
 }
 
 module "domain_controller" {
@@ -62,23 +60,19 @@ module "fileserver" {
 }
 
 module "firewall" {
-  source               = "../modules/firewall"
-  location             = var.resource_group.location
-  resource_group       = module.resource_group.name
-  tags                 = var.tags
-  external_subnet_id   = module.network.external_subnet_id
-  external_subnet_name = module.network.external_subnet_name
-  external_subnet_bits = var.virtual_network.external_subnet.subnet_bits
-  private_subnet_id    = module.network.private_subnet_id
-  private_subnet_name  = module.network.private_subnet_name
-  private_subnet_bits  = var.virtual_network.private_subnet.subnet_bits
-  vnet_name            = local.vnet_name
+  source         = "../modules/firewall"
+  location       = var.resource_group.location
+  resource_group = module.resource_group.name
+  tags           = var.tags
+  address_space  = module.network.virtual_network_address_space
+  vnet_name      = module.network.virtual_network_name
 }
 
 module "vpn_gateway" {
-  source        = "../modules/vpn_gateway"
+  source         = "../modules/vpn_gateway"
   resource_group = module.resource_group.name
   location       = var.resource_group.location
   tags           = var.tags
-  address_space  = local.address_space
+  address_space  = module.network.virtual_network_address_space
+  vnet_name      = module.network.virtual_network_name
 }

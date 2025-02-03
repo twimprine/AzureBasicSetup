@@ -17,3 +17,8 @@ variable "address_space" {
   description = "The address space that the VPN Gateway will use."
   type        = list(string)
 }
+
+variable "vnet_name" {
+  description = "The name of the virtual network."
+  type        = string
+}
