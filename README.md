@@ -25,12 +25,23 @@ This is the standard template for Azure infrastructure to be created. This will 
     az ad sp create-for-rbac --name "terraform-sp" --role Contributor --scopes /subscriptions/<your_subscription_id>
     ```
 
+## Networking
 
+### Subnetting
+The subnets are defined as 24-bit subnets from a larger 16-bit subnet defined in the variables files. They are defined here as reference
+
+- x.x.0.0/24 - External Network
+- x.x.1.0/24 - Internal Server Network
+- x.x.2.0/24 - VPN Network
+
+#### I'm generally not a fan of just using large networks, however cloud providers generally don't like weird numbers of bit for the subnet masks hence why we are using 24-bits for networks that generally don't need them. 
 
 
 # Contribute
 Since this is a template - if it requires changes please open a ticket with the required changes. They will need to be applied to all child repositories as appropriate, i.e. Security fixes, etc. 
 
 # ToDo
-- Basic Fortigate integration https://github.com/fortinet/fortigate-terraform-deploy/tree/main/azure/7.0/single
+- ~~Basic Fortigate integration https://github.com/fortinet/fortigate-terraform-deploy/tree/main/azure/7.0/single~~
+- Using Azure firewall and VPN 
+
 

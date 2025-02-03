@@ -72,12 +72,13 @@ module "firewall" {
   private_subnet_id    = module.network.private_subnet_id
   private_subnet_name  = module.network.private_subnet_name
   private_subnet_bits  = var.virtual_network.private_subnet.subnet_bits
-  vm_size              = var.firewall.vm_size
-  admin_username       = var.firewall.admin_username
-  admin_password       = var.firewall.admin_password
-  publisher            = var.firewall.image.publisher
-  offer                = var.firewall.image.offer
-  sku                  = var.firewall.image.sku
-  fw_version           = var.firewall.image.version
   vnet_name            = local.vnet_name
+}
+
+module "vpn_gateway" {
+  source        = "../modules/vpn_gateway"
+  resource_group = module.resource_group.name
+  location       = var.resource_group.location
+  tags           = var.tags
+  address_space  = local.address_space
 }

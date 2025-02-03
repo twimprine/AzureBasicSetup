@@ -14,14 +14,14 @@ output "private_subnet_id" {
   value = azurerm_subnet.private_subnet.id
 }
 
-output "external_subnet_id" {
-  value = azurerm_subnet.external_subnet.id
-}
+# output "external_subnet_id" {
+#   value = azurerm_subnet.external_subnet.id
+# }
 
 output "private_subnet_name" {
   value = azurerm_subnet.private_subnet.name
 }
 
-output "external_subnet_name" {
-  value = azurerm_subnet.external_subnet.name
-}
+# output "external_subnet_name" {
+#   value = azurerm_subnet.external_subnet.name
+# }

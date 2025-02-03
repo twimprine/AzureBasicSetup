@@ -27,22 +27,22 @@ variable "private_subnet_bits" {
   type        = number
 }
 
-variable "external_subnet_name" {
-  description = "The name of the subnet"
-  type        = string
-}
+# variable "external_subnet_name" {
+#   description = "The name of the subnet"
+#   type        = string
+# }
 
-variable "external_subnet_bits" {
-  description = "The address prefix that is used by the subnet"
-  type        = number
-}
+# variable "external_subnet_bits" {
+#   description = "The address prefix that is used by the subnet"
+#   type        = number
+# }
 
-variable tags {
-  description = "Tags to apply to the resource group"
-  type        = map(string)
-}
+# variable tags {
+#   description = "Tags to apply to the resource group"
+#   type        = map(string)
+# }
 
-variable "fw_private_ip_address" {
-  description = "The private IP address of the firewall"
-  type        = string
-}
+# variable "fw_private_ip_address" {
+#   description = "The private IP address of the firewall"
+#   type        = string
+# }
