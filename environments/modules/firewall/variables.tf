@@ -22,3 +22,28 @@ variable "address_space" {
   description = "The address space that the VPN Gateway will use."
   type        = list(string)
 }
+
+variable "env" {
+  description = "The current operating environment dev/prod"
+  type        = string
+}
+
+variable "azure_gateway_subnet_id" {
+  description = "The ID of the subnet to which the VPN Gateway will be connected."
+  type        = string
+}
+
+variable "location_name" {
+  description = "The name of the location in which the VPN will terminate."
+  type        = string
+}
+
+variable "location_gateway" {
+  description = "The public IP address of the VPN Gateway at the location."
+  type        = string
+}
+
+variable "location_address_space" {
+  description = "The address space that the VPN Gateway will use at the location."
+  type        = list(string)
+}

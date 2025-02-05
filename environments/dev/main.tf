@@ -60,19 +60,34 @@ module "fileserver" {
 }
 
 module "firewall" {
-  source         = "../modules/firewall"
-  location       = var.resource_group.location
-  resource_group = module.resource_group.name
-  tags           = var.tags
-  address_space  = module.network.virtual_network_address_space
-  vnet_name      = module.network.virtual_network_name
+  source                  = "../modules/firewall"
+  location                = var.resource_group.location
+  resource_group          = module.resource_group.name
+  tags                    = var.tags
+  address_space           = module.network.virtual_network_address_space
+  vnet_name               = module.network.virtual_network_name
+  env                     = local.env
+  azure_gateway_subnet_id = module.vpn_gateway.azurerm_gateway_subnet_id
+
+  # Remote Site Config(s)
+  location_name          = var.vpn.location.name
+  location_gateway       = var.vpn.location.gateway_address
+  location_address_space = var.vpn.location.address_space
 }
 
 module "vpn_gateway" {
+  # Gateway Config
   source         = "../modules/vpn_gateway"
   resource_group = module.resource_group.name
   location       = var.resource_group.location
   tags           = var.tags
   address_space  = module.network.virtual_network_address_space
   vnet_name      = module.network.virtual_network_name
+  env            = local.env
+
+  # Remote Site Config(s)
+  location_name          = var.vpn.location.name
+  location_gateway       = var.vpn.location.gateway_address
+  location_address_space = var.vpn.location.address_space
+  shared_key             = var.vpn.location.shared_key
 }

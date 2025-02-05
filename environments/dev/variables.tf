@@ -121,3 +121,15 @@ variable "firewall" {
     })
   })
 }
+
+variable "vpn" {
+  description = "Configuration for the VPN connection"
+  type = object({
+    location = object({
+      name            = string
+      address_space   = list(string) # List of CIDR blocks
+      gateway_address = string       # Public IP of on-prem VPN gateway
+      shared_key      = string       # Pre-shared key for VPN connection
+    })
+  })
+}
