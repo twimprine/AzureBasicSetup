@@ -47,3 +47,15 @@ variable "shared_key" {
   description = "The shared key for the VPN connection."
   type        = string
 }
+
+variable "vpn" {
+  description = "A map containing VPN configurations, including remote sites"
+  type = object({
+    location = object({
+      name            = string
+      address_space   = list(string)
+      gateway_address = string
+      shared_key      = string
+    })
+  })
+}

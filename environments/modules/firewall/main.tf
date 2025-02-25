@@ -47,10 +47,10 @@ resource "azurerm_route_table" "firewall-route" {
   tags = var.tags
 }
 
-resource "azurerm_subnet_route_table_association" "firewall-rt-assoc" {
-  subnet_id      = var.azure_gateway_subnet_id
-  route_table_id = azurerm_route_table.firewall-route.id
-}
+# resource "azurerm_subnet_route_table_association" "firewall-rt-assoc" {
+#   subnet_id      = var.azure_gateway_subnet_id
+#   route_table_id = azurerm_route_table.firewall-route.id
+# }
 
 
 resource "azurerm_firewall_network_rule_collection" "vpn_rules" {
@@ -59,6 +59,7 @@ resource "azurerm_firewall_network_rule_collection" "vpn_rules" {
   resource_group_name = var.resource_group
   priority            = 100
   action              = "Allow"
+  
 
   rule {
     name = "allow-vpn"
@@ -90,7 +91,7 @@ resource "azurerm_network_security_group" "vpn_nsg" {
 }
 
 # Associate NSG with VPN Gateway Subnet
-resource "azurerm_subnet_network_security_group_association" "vpn_nsg_assoc" {
-  subnet_id                 = var.azure_gateway_subnet_id
-  network_security_group_id = azurerm_network_security_group.vpn_nsg.id
-}
+# resource "azurerm_subnet_network_security_group_association" "vpn_nsg_assoc" {
+#   subnet_id                 = var.azure_gateway_subnet_id
+#   network_security_group_id = azurerm_network_security_group.vpn_nsg.id
+# }

@@ -67,7 +67,7 @@ module "firewall" {
   address_space           = module.network.virtual_network_address_space
   vnet_name               = module.network.virtual_network_name
   env                     = local.env
-  azure_gateway_subnet_id = module.vpn_gateway.azurerm_gateway_subnet_id
+  azure_gateway_subnet_id = module.vpn_gateway.vpn_gateway_subnet_id
 
   # Remote Site Config(s)
   location_name          = var.vpn.location.name
@@ -86,6 +86,7 @@ module "vpn_gateway" {
   env            = local.env
 
   # Remote Site Config(s)
+  vpn                    = var.vpn
   location_name          = var.vpn.location.name
   location_gateway       = var.vpn.location.gateway_address
   location_address_space = var.vpn.location.address_space
